@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/assets/default.css" />
+    <link rel="icon" href="/assets/favicon.png" type="image/x-icon" />
+    <title></title>
+  </head>
+  <body class="default">
+    <div class="sidebar">
+      <h1>Documentation</h1>
+
+      <div class="search">
+        <input class="search__input" type="search" placeholder="🔍Search" />
+        <div class="search__results" aria-hidden role="menu">
+          <div class="search__pages"></div>
+          <div class="search__no-pages">No results</div>
+        </div>
+      </div>
+
+      <nav data-slothdocs="sidebar"></nav>
+    </div>
+
+    <main class="content" data-slothdocs="body"></main>
+
+    <div class="subnav">
+      <div class="subnav__sticky">
+        Contents
+        <nav data-slothdocs="subnav"></nav>
+      </div>
+    </div>
+
+    <script src="/search/lunr.min.js"></script>
+    <script src="/assets/search.js"></script>
+    <script src="/assets/subnav.js"></script>
+  </body>
+</html>
