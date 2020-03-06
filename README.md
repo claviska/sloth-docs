@@ -14,6 +14,7 @@ A documentation generator powered by Node.js and sloths.
 This project is a work in progress. There are still some things left to do:
 
 - [ ] Make the default theme prettier
+- [ ] Highlight the current page in the sidebar
 - [ ] Add a CLI command to initialize a new docs project
   - [ ] Generate `sloth-docs.config.js` if it doesn't exist
   - [ ] Copy `README.md` to `docs/home.md` if it does exist
@@ -21,6 +22,7 @@ This project is a work in progress. There are still some things left to do:
   - [ ] Hook to modify markdown before it's parsed
   - [ ] Hook to modify HTML before it's written to file
 - [ ] Add a `baseUrl` config so the docs can be more easily hosted in a subdirectory
+- [ ] Find original sloth SVG again and add attribution
 
 ## Installation
 
@@ -141,7 +143,7 @@ For an example of how search works, check out Lunr's documentation. You can also
 
 ## Creating a Plugin
 
-Plugins look something like this.
+Plugins look something like this. The sloths use the following hooks to modify pages are they're built.
 
 ```js
 module.exports = {
