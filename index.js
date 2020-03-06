@@ -10,9 +10,9 @@ const serve = require('./src/tasks/serve.js');
 let userConfig;
 
 try {
-  userConfig = require(path.join(process.env.PWD, 'slothdocs.config.js'));
-} catch (err) {
-  console.log(err);
+  userConfig = require(path.join(process.env.PWD, 'sloth-docs.config.js'));
+} catch {
+  console.log(chalk.yellow('No config was found at sloth-docs.config.js. The sloths will use the default settings!'));
   userConfig = {};
 }
 
@@ -55,11 +55,11 @@ if (program.clean) {
 }
 
 if (program.serve) {
-  console.log(chalk.cyan('Dev server initialized! Your sloth is busy watching the docs. 🦥 📚'));
+  console.log(chalk.cyan('Dev server initialized! The sloths are watching your docs for changes. 🦥 📚'));
   serve(config).catch(err => console.error(chalk.red('Error serving files!', err)));
 }
 
 if (!program.build && !program.clean && !program.serve) {
-  console.error(`\nThe sloths don't understand that command! 🦥\nSee --help for a list of available commands.\n`);
+  console.error(`The sloths don't understand that command! 🦥\nSee --help for a list of available commands.`);
   process.exit(1);
 }
