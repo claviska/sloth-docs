@@ -1,5 +1,5 @@
 {
-  "name": "slothdocs",
+  "name": "sloth-docs",
   "version": "1.0.0",
   "description": "A documentation generator powered by Node.js and sloths.",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "author": "Cory LaViska (https://twitter.com/claviska)",
   "license": "MIT",
   "bin": {
-    "slothdocs": "./index.js"
+    "sloth-docs": "./index.js"
   },
   "dependencies": {
     "bluebird": "^3.7.2",

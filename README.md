@@ -18,7 +18,7 @@ This project is a work in progress. There are still some things left to do:
   - [ ] Make it responsive
   - [ ] Make the logo and alt text customizable via config
 - [ ] CLI command to initialize
-  - [ ] Generate `slothdocs.config.js` if it doesn't exist
+  - [ ] Generate `sloth-docs.config.js` if it doesn't exist
   - [ ] Copy `README.md` to `docs/home.md` if it does exist
 - [ ] Add more plugin hooks
   - [ ] Hook to modify markdown before it's parsed
@@ -29,12 +29,12 @@ This project is a work in progress. There are still some things left to do:
 It's recommended to install the CLI globally.
 
 ```shell
-npm install -g slothdocs
+npm install -g sloth-docs
 ```
 
 ## Configuration
 
-You can run the CLI without a config, but if you want to change the default config, create `slothdocs.config.js` in the root of your project with one or more of the following options:
+You can run the CLI without a config, but if you want to change the default config, create `sloth-docs.config.js` in the root of your project with one or more of the following options:
 
 ```js
 module.exports = {
@@ -66,20 +66,20 @@ module.exports = {
 
 ## Usage
 
-Run the CLI from the same directory as `slothdocs.config.js`. The following commands are available.
+Run the CLI from the same directory as `sloth-docs.config.js`. The following commands are available.
 
 ```shell
 # Launch the dev server and watch files
-slothdocs --serve
+sloth-docs --serve
 
 # Build the docs
-slothdocs --build
+sloth-docs --build
 
 # Clean the dist directory
-slothdocs --clean
+sloth-docs --clean
 
 # List all options
-slothdocs --help
+sloth-docs --help
 ```
 
 ## Creating Pages
@@ -165,7 +165,7 @@ module.exports = {
 };
 ```
 
-Add them to `slothdocs.config.js` like this:
+Add them to `sloth-docs.config.js` like this:
 
 ```js
 module.exports = {
