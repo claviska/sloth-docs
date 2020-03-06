@@ -1,9 +1,13 @@
-document.addEventListener('click', event => {
-  if (event.target.tagName.toLowerCase() === 'a' && /^#/.test(event.target.getAttribute('href'))) {
-    const el = document.querySelector(event.target.getAttribute('href'));
-    if (el) {
-      event.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth' });
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.content').addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (link && /^#/.test(link.getAttribute('href'))) {
+      const hash = link.getAttribute('href').replace(/^#/, '');
+      const el = document.querySelector(`#${hash}`);
+      if (el) {
+        event.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
-  }
+  });
 });

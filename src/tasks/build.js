@@ -16,7 +16,7 @@ async function buildPage(page, options) {
   const { config, sidebar } = options;
   const templateName = page.attributes.template || 'default';
   const templateHTML = await fs.readFile(path.join(config.theme, `templates/${templateName}.html`), 'utf8');
-  const bodyHTML = marked(page.body);
+  const bodyHTML = wrapHeadingsWithLinks(marked(page.body));
   const sidebarHTML = marked(sidebar);
   const subnavHTML = generateSubnav(bodyHTML);
 
@@ -77,6 +77,26 @@ function runInjectionPlugins(html, config) {
       }
     });
   }
+
+  return $.html();
+}
+
+function wrapHeadingsWithLinks(html) {
+  const $ = cheerio.load(html);
+
+  $('h2, h3, h4, h5, h6').each((index, el) => {
+    const id = $(el).attr('id');
+    const link = $(el).closest('a');
+
+    if (!link.length) {
+      const link = $('<a />')
+        .attr('href', `#${id}`)
+        .html($(el).html());
+      $(el)
+        .html('')
+        .append(link);
+    }
+  });
 
   return $.html();
 }

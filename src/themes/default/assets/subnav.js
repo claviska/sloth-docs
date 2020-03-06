@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
   const subNav = {
     container: document.querySelector('.subnav'),
     links: null,

@@ -20,7 +20,7 @@ const config = Object.assign(
   {
     name: 'Sloth Docs',
     favicon: '/assets/favicon.png',
-    logo: '/assets/sloth.svg',
+    logo: '/assets/logo.svg',
     docs: './docs',
     dist: './dist',
     plugins: [],

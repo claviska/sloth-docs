@@ -16,13 +16,13 @@ This project is a work in progress. There are still some things left to do:
 - [ ] Improve the default theme
   - [ ] Make it prettier
   - [ ] Make it responsive
-  - [ ] Make the logo and alt text customizable via config
 - [ ] CLI command to initialize
   - [ ] Generate `sloth-docs.config.js` if it doesn't exist
   - [ ] Copy `README.md` to `docs/home.md` if it does exist
 - [ ] Add more plugin hooks
   - [ ] Hook to modify markdown before it's parsed
   - [ ] Hook to modify HTML before it's written to file
+- [ ] Add baseUrl to config/templates so docs can be hosted in subdirectories
 
 ## Installation
 
@@ -98,6 +98,8 @@ template: default
 Lorem ipsum dolor amet...
 
 ```
+
+Keep in mind that `<h1>` is a special tag and should only appear once at the very top of each page.
 
 ## Creating a Theme
 
