@@ -13,16 +13,14 @@ A documentation generator powered by Node.js and sloths.
 
 This project is a work in progress. There are still some things left to do:
 
-- [ ] Improve the default theme
-  - [ ] Make it prettier
-  - [ ] Make it responsive
-- [ ] CLI command to initialize
+- [ ] Make the default theme prettier
+- [ ] Add a CLI command to initialize a new docs project
   - [ ] Generate `sloth-docs.config.js` if it doesn't exist
   - [ ] Copy `README.md` to `docs/home.md` if it does exist
 - [ ] Add more plugin hooks
   - [ ] Hook to modify markdown before it's parsed
   - [ ] Hook to modify HTML before it's written to file
-- [ ] Add baseUrl to config/templates so docs can be hosted in subdirectories
+- [ ] Add a `baseUrl` config so the docs can be more easily hosted in a subdirectory
 
 ## Installation
 
