@@ -13,13 +13,13 @@ A documentation generator powered by Node.js and sloths.
 
 This project is a work in progress. There are still some things left to do:
 
-- [ ] CLI command to initialize
-  - [ ] Generate `slothdocs.config.js` if it doesn't exist
-  - [ ] Copy `README.md` to `docs/home.md` if it does exist
 - [ ] Improve the default theme
   - [ ] Make it prettier
   - [ ] Make it responsive
   - [ ] Make the logo and alt text customizable via config
+- [ ] CLI command to initialize
+  - [ ] Generate `slothdocs.config.js` if it doesn't exist
+  - [ ] Copy `README.md` to `docs/home.md` if it does exist
 - [ ] Add more plugin hooks
   - [ ] Hook to modify markdown before it's parsed
   - [ ] Hook to modify HTML before it's written to file
@@ -38,6 +38,15 @@ You can run the CLI without a config, but if you want to change the default conf
 
 ```js
 module.exports = {
+  // The name of your docs site
+  name: 'Sloth Docs',
+
+  // The docs site favicon URL
+  favicon: '/assets/favicon.png',
+
+  // The docs site logo URL
+  logo: '/assets/sloth.svg',
+
   // The directory that contains your markdown files
   docs: 'docs',
 
@@ -105,15 +114,20 @@ To create a theme, create a folder with the following structure:
 
 Every theme _must_ have a default template called `default.html`. You can create additional templates and set them using front matter as shown above. Just use the name of the template file _without_ an extension. For example, if your template is called `custom-template.html` use `template: custom-template` in your front matter.
 
-Your template needs to tell the sloths _where_ things should go. Do this with the following tags:
+Your template needs to tell the sloths _where_ things should go. Do this with the following [Mustache](https://mustache.github.io/) tags.
 
-- `<title>` - receives the `title` front matter
-- `<meta name="description">` - receives the `description` front matter
-- `<nav data-slothdocs="sidebar">` - receives the sidebar
-- `<div data-slothdocs="body">` - receives the body of the markdown file (i.e. the actual content)
-- `<nav data-slothdocs="subnav"></nav>` - receives the subnav (i.e. the generated in-page nav)
+- `{{name}}` - The name of the docs site
+- `{{favicon}}` - The favicon URL, e.g. `<link rel="icon" rel="{{favicon}}" type="image/x-icon" />`
+- `{{logo}}` - The logo URL, e.g. `<img src="{{logo}}" alt="{{name}}">`
+- `{{title}}` - The page title, e.g. `<title>{{title}}</title>`
+- `{{description}}` - The page description, e.g. `<meta name="description" content="{{description}}">`
+- `{{{body}}}` - The body HTML
+- `{{{sidebar}}}` - The sidebar HTML
+- `{{{subnav}}}` - The subnav HTML
 
-If any of these tags are omitted, the sloths will just ignore them. Refer to `src/themes/default/templates/default.html` for an example.
+Note the triple brackets for `body`, `sidebar`, and `subnav`. This is required so the HTML isn't escaped by the Mustache engine.
+
+If any of the tags are omitted, the sloths will simply ignore them. Refer to `src/themes/default/templates/default.html` for an example.
 
 ### Assets
 

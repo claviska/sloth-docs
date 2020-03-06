@@ -1,29 +1,30 @@
 /* Variables */
 :root {
+  --font-monospace: Menlo, Monaco, 'Courier New', monospace;
+  --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --body-color: #232323;
+  --line-height: 1.6;
+
   --body-max-width: 1200px;
   --sidebar-width: 260px;
-  --page-links-width: 260px;
+  --subnav-width: 260px;
 
   --color-primary: #08d;
   --color-gray-light: #aaa;
   --color-gray-lighter: #eee;
   --color-gray-lightest: #f8f8f8;
-
-  --font-monospace: Menlo, Monaco, 'Courier New', monospace;
-  --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    'Helvetica Neue', sans-serif;
-  --font-size-medium: 16px;
-  --font-size-small: 15px;
-  --font-size-smaller: 14px;
 }
 
 /* Base styles */
 html {
   font-family: var(--font-sans-serif);
-  font-size: var(--font-size-medium);
-  line-height: 1.6;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--body-color);
   box-sizing: border-box;
-  font-size: 16px;
 }
 
 *,
@@ -181,18 +182,16 @@ a {
 
 /* Subnav */
 .subnav {
-  position: sticky;
-  top: 0;
   flex: 0 0 auto;
-  width: var(--page-links-width);
+  width: var(--subnav-width);
   font-size: var(--font-size-small);
   color: var(--color-gray-light);
-  padding: 1.5rem;
+  padding: 0;
 }
 
 .subnav__sticky {
   position: sticky;
-  top: 0;
+  top: 2rem;
   max-height: 100vh;
   overflow: auto;
 }

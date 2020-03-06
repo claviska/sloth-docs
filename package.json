@@ -23,6 +23,7 @@
     "marked": "^0.8.0",
     "md5": "^2.2.1",
     "mkdirp": "^1.0.3",
+    "mustache": "^4.0.0",
     "recursive-copy": "^2.0.10",
     "recursive-readdir": "^2.2.2"
   }

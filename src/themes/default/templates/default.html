@@ -3,32 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
+    <meta name="description" content="{{description}}" />
     <link rel="stylesheet" href="/assets/default.css" />
-    <link rel="icon" href="/assets/favicon.png" type="image/x-icon" />
-    <title></title>
+    <link rel="icon" rel="{{favicon}}" type="image/x-icon" />
+    <title>{{title}}</title>
   </head>
   <body class="default">
     <div class="sidebar">
-      <h1>Documentation</h1>
+      <h1>
+        <img class="logo" src="{{logo}}" alt="{{name}}" />
+      </h1>
 
       <div class="search">
         <input class="search__input" type="search" placeholder="🔍Search" />
         <div class="search__results" aria-hidden role="menu">
           <div class="search__pages"></div>
-          <div class="search__no-pages">No results</div>
+          <div class="search__no-pages">No results 🦥</div>
         </div>
       </div>
 
-      <nav data-slothdocs="sidebar"></nav>
+      <nav>{{{sidebar}}}</nav>
     </div>
 
-    <main class="content" data-slothdocs="body"></main>
+    <main class="content">{{{body}}}</main>
 
     <div class="subnav">
       <div class="subnav__sticky">
         Contents
-        <nav data-slothdocs="subnav"></nav>
+        <nav>
+          {{{subnav}}}
+        </nav>
       </div>
     </div>
 

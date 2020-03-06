@@ -1,3 +1,4 @@
+const Mustache = require('mustache');
 const Promise = require('bluebird');
 const cheerio = require('../cheerio');
 const copy = require('recursive-copy');
@@ -12,25 +13,39 @@ const md5 = require('md5');
 const rootDir = path.dirname(path.dirname(__dirname));
 
 async function buildPage(page, options) {
-  const bodyHTML = marked(page.body);
   const { config, sidebar } = options;
-  const sidebarHTML = marked(sidebar);
   const templateName = page.attributes.template || 'default';
-  const template = await fs.readFile(path.join(config.theme, `templates/${templateName}.html`), 'utf8');
-  const $ = cheerio.load(template);
+  const templateHTML = await fs.readFile(path.join(config.theme, `templates/${templateName}.html`), 'utf8');
+  const bodyHTML = marked(page.body);
+  const sidebarHTML = marked(sidebar);
+  const subnavHTML = generateSubnav(bodyHTML);
 
-  // Set metadata
-  $('title').html(page.attributes.title);
-  $('meta[name="description"]').attr('content', page.attributes.description);
+  // Render it
+  let html = Mustache.render(templateHTML, {
+    name: config.name,
+    favicon: config.favicon,
+    logo: config.logo,
+    title: page.attributes.title,
+    description: page.attributes.description,
+    body: bodyHTML,
+    sidebar: sidebarHTML,
+    subnav: subnavHTML
+  });
 
-  // Set content
-  $('[data-slothdocs="sidebar"]').html(sidebarHTML);
-  $('[data-slothdocs="body"]').html(bodyHTML);
+  html = runInjectionPlugins(html, config);
 
-  // Generate subnav
-  const subnavHeadings = $('[data-slothdocs="body"]').find('h2, h3, h4, h5, h6');
+  // Create the target directory if it doesn't exist
+  await mkdirp(path.dirname(page.filename));
+
+  // Write the page
+  return fs.writeFile(page.filename, html);
+}
+
+function generateSubnav(html) {
+  const $ = cheerio.load(html);
+  const subnavHeadings = $('h2, h3, h4, h5, h6');
   if (subnavHeadings.length) {
-    $('[data-slothdocs="subnav"]').append('<ul />');
+    const ul = $('<ul />');
     subnavHeadings.each((index, el) => {
       $('<li />')
         .append(
@@ -39,9 +54,16 @@ async function buildPage(page, options) {
             .addClass(el.tagName.toLowerCase())
             .text($(el).text())
         )
-        .appendTo('[data-slothdocs="subnav"] > ul');
+        .appendTo(ul);
     });
+    return $.html(ul);
+  } else {
+    return '';
   }
+}
+
+function runInjectionPlugins(html, config) {
+  const $ = cheerio.load(html);
 
   // Run injection plugins
   if (Array.isArray(config.plugins)) {
@@ -56,11 +78,7 @@ async function buildPage(page, options) {
     });
   }
 
-  // Create the target directory if it doesn't exist
-  await mkdirp(path.dirname(page.filename));
-
-  // Write the page
-  return fs.writeFile(page.filename, $.html());
+  return $.html();
 }
 
 module.exports = async function(config) {

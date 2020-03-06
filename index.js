@@ -18,10 +18,13 @@ try {
 
 const config = Object.assign(
   {
+    name: 'Sloth Docs',
+    favicon: '/assets/favicon.png',
+    logo: '/assets/sloth.svg',
     docs: './docs',
     dist: './dist',
-    sidebar: '_sidebar.md',
     plugins: [],
+    sidebar: '_sidebar.md',
     theme: path.join(__dirname, 'src/themes/default')
   },
   userConfig
@@ -54,7 +57,9 @@ if (program.clean) {
 if (program.serve) {
   console.log(chalk.cyan('Dev server initialized! Your sloth is busy watching the docs. 🦥 📚'));
   serve(config).catch(err => console.error(chalk.red('Error serving files!', err)));
-} else {
-  console.error('The sloths are confused! 🦥\nSee --help for a list of available commands.');
+}
+
+if (!program.build && !program.clean && !program.serve) {
+  console.error(`\nThe sloths don't understand that command! 🦥\nSee --help for a list of available commands.\n`);
   process.exit(1);
 }
