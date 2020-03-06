@@ -107,6 +107,18 @@ blockquote {
   margin: 2rem 0;
 }
 
+pre,
+code {
+  font-family: var(--font-monospace);
+}
+
+code {
+  font-size: 14px;
+  background-color: #f2f2f2;
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -164,6 +176,10 @@ pre {
 
 .sidebar li {
   margin: 0 0 0.5rem 0;
+}
+
+.sidebar p {
+  margin-bottom: 0;
 }
 
 .sidebar a {
